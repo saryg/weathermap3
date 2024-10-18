@@ -4,11 +4,11 @@ import os
 from os import listdir
 
 # get the path/directory
-folder_dir = "C:\\Users\\user\\Documents\\Weathermap3\\icons-transparent"
+folder_dir = "icons-transparent"
 for image in os.listdir(folder_dir):
     # check if the image ends with png
-    if image.endswith(".png"):
-        fn = folder_dir + "\\" + image
+    if image.endswith(".jpg"):
+        fn = folder_dir + "/" + image
         print(fn)
 
         img = Image.open(fn)

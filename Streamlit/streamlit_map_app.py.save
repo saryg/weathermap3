@@ -1,0 +1,30 @@
+import streamlit as st
+import folium
+
+def main():
+# Configure Streamlit server options
+    config = st.config
+    config.set_option("server.enableCORS", False)
+    config.set_option("server.headless", True)
+    config.set_option("server.runOnSave", False)
+
+    # Run the app on the local network
+    st.run(main, "0.0.0.0", 8501)
+
+    st.title("Map Point Selection")
+
+    # Display the map
+    st.header("Select a point on the map")
+    location = st.empty()
+    map = folium.Map(location=[0, 0], zoom_start=2)
+    map.add_child(folium.LatLngPopup())
+    location.pydeck_chart(map)
+
+    # Retrieve the selected coordinates
+    if st.button("Get Coordinates"):
+        lat, lon = map.get_root().get_children()[0].location
+        st.success(f"Selected Coordinates: Latitude={lat}, Longitude={lon}")
+
+
+if __name__ == "__main__":
+    main()

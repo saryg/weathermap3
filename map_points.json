@@ -1,0 +1,25 @@
+{
+    "Germany":[
+    "points_of_interest": [
+      "Braunschweig": [52.2637, 10.5239],
+      "Bad Gandersheim": [51.8700, 10.0252],
+      "Bad Waldsee": [47.9203, 9.7533],
+      "Halle": [51.4938, 11.9657],
+      "Göttingen": [51.5405, 9.9168],
+      "Berlin": [52.5180, 13.4027],
+      "München": [48.1428, 11.5706],
+      "Selingstadt": [49.13001, 11.1497]
+    ],
+    "forecast_location": "Braunschweig"
+],
+"Ireland":[
+    "points_of_interest": [
+        "Killinga": [51.6148, -9.1544],
+        "Rathmines": [53.3203, -6.2783],
+        "Dunmore East": [52.1526, -6.9954],
+        "Sligo": [54.2771, -8.4743]
+
+]
+
+  }
+  

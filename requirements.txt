@@ -4,4 +4,3 @@ mercantile
 Pillow==9.3.0
 Shapely==1.8.5.post1
 ephem
-scipy

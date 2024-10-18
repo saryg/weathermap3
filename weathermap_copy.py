@@ -1,8 +1,5 @@
 import cartopy.crs as ccrs
 import matplotlib.pyplot as plt
-from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-
-import numpy as np
 import mercantile
 import shapefile
 from shapely.geometry import shape
@@ -12,11 +9,7 @@ from PIL import Image
 from io import BytesIO
 import time
 
-import cartopy.io.img_tiles as cimgt
-
 import settings
-
-import matplotlib_curved_text
 
 # RADAR_MAP_FN = "radar_map.png"
 
@@ -46,7 +39,6 @@ def createBaseMap(country):
         edgecolor="grey",
         facecolor="none",  # "#f9f9f9",
         linewidth=0.6,
-        zorder=2,
     )
     # Focus countries
     ax.add_geometries(
@@ -55,7 +47,6 @@ def createBaseMap(country):
         edgecolor="black",
         facecolor="none",
         linewidth=1.4,
-        zorder=2,
     )
 
     # ax.coastlines(resolution='10m', color='red', linewidth=0.25)
@@ -63,7 +54,6 @@ def createBaseMap(country):
 
     for place, coords in settings.map_settings[country]["points_of_interest"].items():
         print(f"{place}:  [{coords[0]}, {coords[1]}]")
-
         marker_style = "o"
         if settings.map_settings[country]["forecast_location"] == place:
             marker_style = "o"
@@ -102,7 +92,7 @@ def loadOrCreateBaseMapPickle(country):
     return ax
 
 
-def makeRadarMap2(country):
+def makeRadarMap(country):
     # Load pickle base map with point of interest
     ax = loadOrCreateBaseMapPickle(country)
 
@@ -139,36 +129,9 @@ def makeRadarMap2(country):
                         tile_bounds[3],
                     ),
                     transform=ccrs.PlateCarree(),
-                    interpolation="bicubic",
                 )
-
     plt.gca().set_position([0, 0, 1, 1])
     plt.savefig(settings.radar_map_path)
-    return settings.radar_map_path
-
-
-def makeRadarMap(country):
-    # Load pickle base map with point of interest
-    ax = loadOrCreateBaseMapPickle(country)
-
-    # Get zoom and tile range for radar coverage
-    z = settings.map_settings[country]["zoom"]
-    timestamp = getTileTimestamp()
-
-    url = settings.rainviewer_radar_tile_url.format(
-        timestamp=timestamp, x="{x}", y="{y}", z="{z}"
-    )
-    print(url)
-
-    print("getting tiles...")
-    tiles = cimgt.GoogleTiles(url=url, desired_tile_form="RGBA")
-
-    print("adding tiles...")
-    ax.add_image(tiles, z, zorder=50)
-
-    plt.gca().set_position([0, 0, 1, 1])
-    plt.savefig(settings.radar_map_path)
-    print("Saved base radar image")
     return settings.radar_map_path
 
 
@@ -265,8 +228,8 @@ def countryMapShape(country):
 
 
 def main():
-    country = "Germany"  # "Ireland" or "Germany"
-    createBaseMap(country)
+    country = "Ireland"  # "Ireland" or "Germany"
+    # createBaseMap(country)
     base_radar_map_image = makeRadarMap(country)
 
 

@@ -8,11 +8,7 @@ import settings
 
 
 def getForecast(location_latlon, timezone="auto"):
-    # timezone = "Europe/Dublin"
-    killinga_lat_lon = [51.6148, -9.1544]
-    rathmines_lat_lon = [53.3203, -6.2783]
-    braunschweig_latlon = [52.2637, 10.52396]
-
+    
     latitude, longitude = location_latlon
 
     # open_meteo_url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,weathercode,cloudcover,evapotranspiration,windspeed_10m,winddirection_10m,windgusts_10m,uv_index,uv_index_clear_sky,is_day&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max,precipitation_sum,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,et0_fao_evapotranspiration&current_weather=true&forecast_days=3&timezone={timezone}"
